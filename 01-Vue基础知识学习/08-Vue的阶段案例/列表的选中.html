@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- <h2 :class="{title:true}"></h2> -->
+            <!-- 对active的class进行动态绑定 -->
+            <li :class="{active:index==currentIndex}" @click="liClick(index)" v-for="(item,index) in movies"> {{item}}
+            </li>
+        </ul>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data() {
+                return {
+                    message: "hello vue",
+                    movies: ["星际穿越", "海蜇王", "蛊真人", "javascript设计"],
+                    currentIndex: -1,
+                }
+            },
+            methods: {
+                liClick(index) {
+                    console.log("点击~", index);
+                    this.currentIndex = index;
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

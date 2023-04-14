@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1.默认传递event事件 -->
+        <button @click="btn1Click">按钮</button>
+        <!-- 2.明确的参数 -->
+        <!-- 'why',18作为参数传递到methods中的btn2Click() -->
+        <button @click="btn2Click('why',18)">按钮</button>
+        <!-- 3.自己的参数和event对象 -->
+        <!-- 在模板中想要明确的获取event对象：$event -->
+        <button @click="btn3Click('why',age,$event)">按钮</button>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data: function () {
+                return {
+                    message: "hello vue",
+                    age: 19,
+                }
+            },
+            methods: {
+                // 1.默认参数event对象
+                // 总结：如果在绑定事件的时候，没有传递任何参数，那么event对象会默认传递进来
+                btn1Click(event) {
+                    console.log("btn1Click", event);
+                },
+                btn2Click(name, age) {
+                    console.log("btn2Click", name, age);
+                },
+                btn3Click(name, age,event) {
+                    console.log("btn3Click", name, age,event);
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

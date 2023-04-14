@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{info.name}}</h2>
+        <button @click="changeInfo">按钮</button>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data() {
+                return {
+                    message: "hello vue",
+                    info: { name: "why", age: 19 },
+                }
+            },
+            methods: {
+                changeInfo() {
+                    // 1.创建新对象复制给info
+                    // this.info = { name: "kobe" }
+                    // 2.直接修改原对象某一个属性
+                    this.info.name = "kobe";
+                }
+            },
+            watch: {
+                // 1、默认watch不会进行深度监听
+                // info(newValaue, oldVlaue) {
+                //     console.log(newValaue, oldVlaue);
+                //     console.log("info数据发生了变化~");//通过this.message获取当前的最新的message
+                // },
+                //2、 进行深度监听
+                info: {//只是在改变info的属性
+                    handler(newVlaue, oldVlaue) {
+                        console.log("info改变", newVlaue, oldVlaue);
+
+                    },
+                    // 监听器选项
+                    deep: true,//info进行深度监听
+                    // 第一次渲染直接执行一次监听器
+                    immediate: true,
+                }
+            }
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

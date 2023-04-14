@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1.基本使用 -->
+        <h2>{{message}}</h2>
+        <!-- 2.表达式 -->
+        <h2>当前计数：{{counter*2}}</h2>
+        <h2>{{info.split(" ")}}</h2>
+        <!-- 3.三元运算符 -->
+        <h2>{{age >=18 ? "成年人":"未成年人"}}</h2>
+        <!-- 4.调用函数methods -->
+        <h2>{{FormData()}}</h2>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data: function () {
+                return {
+                    message: "hello vue",
+                    counter: 6,
+                    info: "my name is well",
+                    age: 23,
+                }
+            },
+            methods:{
+                FormData(){
+                    return "2022-10-10";
+                }
+            }
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

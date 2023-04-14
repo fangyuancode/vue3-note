@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- v-bind绑定属性 -->
+    <div id="app">
+        <button @click="changImage">切换图片</button>
+        <!-- 1.绑定img的src属性 -->
+        <img v-bind:src="showImage" alt="">
+        <!-- 2.绑定a的超连接 href属性-->
+        <a :href="href">百度一下</a>
+        <h2>{{message}}</h2>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data: function () {
+                return {
+                    message: "hello vue",
+                    imgUrl1: "https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics7.baidu.com%2Ffeed%2F500fd9f9d72a6059417ddbcb482f4990023bba9c.jpeg%40f_auto%3Ftoken%3Dff2884822fb4c2e6a49388cb9aa7fecd&refer=http%3A%2F%2Fwww.baidu.com&app=2021&size=f360,240&n=0&g=0n&q=75&fmt=auto?sec=1672506000&t=8888da75707fbbf09ff9bac9371fdc19",
+                    imgUrl2: "https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics6.baidu.com%2Ffeed%2Ff31fbe096b63f624a0b8d792a22897f31b4ca336.jpeg%40f_auto%3Ftoken%3D340c4cf24c2b0013b1753942bde64287&refer=http%3A%2F%2Fwww.baidu.com&app=2021&size=f360,240&n=0&g=0n&q=75&fmt=auto?sec=1672506000&t=fbc712de714ce3673a2226e733a3fbb1",
+                    showImage: "https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics7.baidu.com%2Ffeed%2F500fd9f9d72a6059417ddbcb482f4990023bba9c.jpeg%40f_auto%3Ftoken%3Dff2884822fb4c2e6a49388cb9aa7fecd&refer=http%3A%2F%2Fwww.baidu.com&app=2021&size=f360,240&n=0&g=0n&q=75&fmt=auto?sec=1672506000&t=8888da75707fbbf09ff9bac9371fdc19",
+                    href: "http://baidu.com"
+                }
+            },
+            methods: {
+                changImage() {
+                    this.showImage = this.showImage === this.imgUrl1 ? this.imgUrl2 : this.imgUrl1;
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

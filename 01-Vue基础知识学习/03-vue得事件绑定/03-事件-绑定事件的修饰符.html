@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box" @click="divClick">
+            <!-- .stop添加修饰符，阻止事件冒泡 内部调用 event.stopPropagation()，-->
+            <button @click.stop="btn1Click">按钮</button>
+        </div>
+
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data: function () {
+                return {
+                    message: "hello vue",
+                }
+            },
+            methods: {
+                btn1Click() {
+                    // event.stopPropagation();//阻止事件冒泡
+                    console.log("btn1");
+                },
+                divClick() {
+                    console.log("divClick");
+                }
+
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

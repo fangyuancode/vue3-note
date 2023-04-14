@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <product-item></product-item>
+    </div>
+    <template id="item">
+        <div class="producet">
+            <h2> 全局组件需要使用我们全局创建的app来注册组件;</h2>
+            <p> 通过component方法传入组件名称、组件对象即可注册一个全局组件了;
+                之后,我们可以在App组件的template中直接使用这个全局组件;</p>
+        </div>
+    </template>
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data() {
+                return {
+                    message: "hello vue",
+                }
+            },
+            // 告诉当前组件会用到那些组件  
+            components: {
+                ProductItem: {//局部组件
+                    template: "#item",
+                },
+                ProductItem1: {//局部组件
+                    template: "#item",
+                },
+            }
+
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

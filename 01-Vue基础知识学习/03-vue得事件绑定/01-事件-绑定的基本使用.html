@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1.基本的写法 -->
+        <div class="box" v-on:click="divClick"></div>
+        <!-- 2.语法糖写法 -->
+        <div class="box" @click="divClick"></div>
+        <!-- 3.绑定的方法的位置，也可以写成一个表达式 -->
+        <h2>{{counter}}</h2>
+        <button @click="increment">+1</button>
+        <button @click="counter++">+1</button>
+        <!-- 4.绑定其他方法 -->
+        <div class="box" @click="divClick" @mousemove="divmouseMove"></div>
+        <!-- 5.元素绑定多个事件(绑定的事件名称和方法) -->
+        <div class="box" v-on="{click:divClick,mousemove:divmouseMove}"></div>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data: function () {
+                return {
+                    message: "hello vue",
+                    counter: 0,
+                }
+            },
+            methods: {
+                divClick() {
+                    console.log("divClick");
+                },
+                increment() {
+                    this.counter++;
+                },
+                divmouseMove() {
+                    console.log("mouseMove");
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

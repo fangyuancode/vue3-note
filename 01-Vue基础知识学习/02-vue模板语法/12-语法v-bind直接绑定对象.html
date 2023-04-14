@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2 :name="name"  :age="18" :height="1.88">Hello World</h2>
+        <!-- v-bind对象 ,会自动的遍历对象的所有属性，把他们作为属性，添加到当前元素上面-->
+        <h2 v-bind="props">hello 222</h2>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data: function () {
+                return {
+                    message: "hello vue",
+                    props: { name: "why", age: 18, height: 1.88, },
+                    name: "why",
+                    age: 18,
+                    height: 1.88,
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

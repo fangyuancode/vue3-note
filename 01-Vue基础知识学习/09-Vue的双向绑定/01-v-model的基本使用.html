@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 手动实现双向绑定  -->
+        <!-- 在input中输入东西时会触发input事件 -->
+        <input type="text" :value="message" @input="inputChange">
+        <button>登录</button>
+        <input type="text" v-model="message">
+        <h2>{{message}}</h2>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data() {
+                return {
+                    message: "hello vue",
+                }
+            },
+            methods: {
+                inputChange(event) {
+                    console.log(event);
+                    console.log(event.target);
+                    console.log(event.target.value);
+                    this.message=event.target.value;
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

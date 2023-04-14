@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- cdn地址 -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            template: `<h2>hello world</h2>`,
+     })
+    //  挂载
+    app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过queryselector找到div元素
+    </script>
+</body>
+
+</html>

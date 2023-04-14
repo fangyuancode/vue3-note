@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <button @click="changeMessage">修改message</button>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data() {
+                return {
+                    message: "hello vue",
+                    info: { name: "why", age: 19 },
+                }
+            },
+            methods: {
+                changeMessage() {
+                    this.message = "你好啊！"
+                    this.info = { name: "kobe" }
+                }
+            },
+            watch: {
+                // 1.默认有两个参数newVlaue,oldVlaue
+                message(newValaue, oldVlaue) {
+                    console.log(newValaue, oldVlaue);
+                    console.log("message数据发生了变化~", this.message);//通过this.message获取当前的最新的message
+
+                },
+                info(newValaue, oldVlaue) {//newValaue本质上是一个proxy对象
+                    // 2.如果是对象类型，那么拿到的是代理对象
+                    console.log("info发生变化~", newValaue, oldVlaue);
+                    console.log(newValaue.name, oldVlaue.name);//获取代理对象的值
+                    // 3.获取原始对象
+                    console.log({ ...newValaue });//方法一：对原来的对象做一个展开，将所有属性展开，将所有属性取出来，放到一个新的对象里面。
+                    console.log(Vue.toRaw(newValaue));//方法二：通过toRaw拿到最原始的数据
+                }
+            }
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1.普通html写法 -->
+        <h2 style="color: red;font-size: 30px;">哈哈哈1</h2>
+        <!-- 2.style中的某些值，来自data中 -->
+        <!-- 2.1动态绑定style，在后面更上对象类型，单引号的使用 -->
+        <h2 :style="{color:fontcolor,'font-size':'30px'}">哈哈哈1</h2>
+        <!-- 2.2动态的绑定属性，这个属性是一个对象 -->
+        <h2 :style="objStyle">呵呵哈哈哈</h2>
+        <!-- 3.style的数组语法 -->
+        <h2 :style="[objStyle,{backgroudColor:'purple'}]">kkkk</h2>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data: function () {
+                return {
+                    message: "hello vue",
+                    fontcolor: "bule",
+                    objStyle: {
+                        fontSize: '50px',
+                        color: 'green'
+                    }
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

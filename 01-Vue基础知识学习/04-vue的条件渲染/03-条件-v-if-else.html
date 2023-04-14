@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-if="条件"-->
+        <!-- 判断info有没有key,返回一个数组 -->
+        <div class="info" v-if="Object.keys(info).length > 0">
+            <h2>个人信息</h2>
+            <ul>
+                <li>姓名：{{info.name}}</li>
+                <li>年龄：{{info.age}}</li>
+            </ul>
+        </div>
+        <!-- v-else -->
+        <div v-else>
+            <h2>没有输入个人信息</h2>
+            <p> 请输入个人信息后进行展示~</p>
+        </div>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data() {
+                return {
+                    message: "hello vue",
+                    info: { name: 'why', age: 19 },
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{fullName}}</h2>
+        <button @click="btnClick">设置fullName</button>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        // 1.创建app
+        const app = Vue.createApp({//vue全局对象。调用Vue.createApp（），返回一个函数。
+            data() {
+                return {
+                    message: "hello vue",
+                    firstName: "kobe",
+                    listName: "brant",
+                    score: 80,
+                    message: "my name is www",
+                }
+            },
+            computed: {
+                // 语法糖
+                fullname() {
+                    return this.firstName + " " + this.listName
+                },
+                // 完整写法
+                fullName: {
+                    get: function () {
+                        return this.firstName + " " + this.listName
+                    },
+                    set: function (value) {
+                        const names = value.split(" ");
+                        this.firstName = names[0];
+                        this.listName = names[1];
+                    }
+                },
+            },
+            methods: {
+                btnClick() {
+                    // 可以打印，更改fullname的值
+                    console.log(this.fullName);
+                    this.fullName = "www bbb"
+
+                }
+            },
+        })
+        // 2.挂载app
+        app.mount("#app");//app调用mount函数，挂载到#app里面。底层通过querySelector找到div元素
+    </script>
+</body>
+
+</html>
